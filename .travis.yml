@@ -25,15 +25,15 @@ install:
   # build with java 11
   - mvn install -DskipTests=true -B -V
 
-Before_script:
+#Before_script:
   #Run tests with java 11 for ppc64le
-  - if [[ "${TRAVIS_CPU_ARCH}" = "ppc64le" ]]; then jdk_switcher use openjdk11; fi
+  #  - if [[ "${TRAVIS_CPU_ARCH}" = "ppc64le" ]]; then jdk_switcher use openjdk11; fi
 
 script:
   # run tests with java 11
   - mvn test -B
-  # run tests with java 8
-  - jdk_switcher use openjdk8
+  # run tests with java 11 
+  - jdk_switcher use openjdk11
   - mvn -v && mvn -B test
   # install and publish snapshot with java 8
   # not via `after_success` but directly in `script`, since a failure would be silently ignored in `after_success`, which
