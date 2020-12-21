@@ -25,6 +25,10 @@ install:
   # build with java 11
   - mvn install -DskipTests=true -B -V
 
+Before_script:
+  #Run tests with java 11 for ppc64le
+  - if [[ "${TRAVIS_CPU_ARCH}" = "ppc64le" ]]; then jdk_switcher use openjdk11; fi
+
 script:
   # run tests with java 11
   - mvn test -B
